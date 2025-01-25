@@ -36,11 +36,11 @@ public class PlayerKeyboardInput : MonoBehaviour {
         var dKey = current.dKey;
 
         // 左に移動
-        if (leftArrowKey.wasPressedThisFrame || aKey.wasPressedThisFrame) {
+        if (leftArrowKey.isPressed || aKey.isPressed) {
             playerMove.MoveLeft();
         }
         // 右に移動
-        else if (rightArrowKey.wasPressedThisFrame || dKey.wasPressedThisFrame) {
+        else if (rightArrowKey.isPressed || dKey.isPressed) {
             playerMove.MoveRight();
         }
         // ジャンプボタンが押された
