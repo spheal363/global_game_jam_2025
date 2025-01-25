@@ -4,7 +4,8 @@ public class BubbleSpawner : MonoBehaviour
 {
     public GameObject bubblePrefab; // 生成するバブルのプレハブ
     public int bubbleCount = 10; // 一度に生成するバブルの数
-
+    public float initSpawnDelay;
+    public float spawnIntervalTime;
     private BoxCollider2D spawnArea; // スポーン範囲
 
     private void Start()
@@ -19,6 +20,7 @@ public class BubbleSpawner : MonoBehaviour
 
         // バブルを生成
         SpawnBubbles();
+        InvokeRepeating(nameof(SpawnBubbles), initSpawnDelay, spawnIntervalTime);
     }
     private void Update() 
     {

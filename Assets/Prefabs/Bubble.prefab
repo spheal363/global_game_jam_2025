@@ -117,7 +117,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7684743912168642978}
@@ -190,13 +190,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f7e560b513ac847b671dbc531c0c7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  addForce: {x: 0.3, y: 0}
-  lifetime: 2
   blinkInterval: 0.2
   blinkCount: 8
   spriteRenderers:
   - {fileID: 3044535013294693335}
   - {fileID: 3476861936423919300}
+  minLifeTime: 1.5
+  maxLifeTime: 4
+  minAddForceX: 0.1
+  maxAddForceX: 0.3
   minGravity: -0.1
   maxGravity: -0.3
 --- !u!50 &5383623538293336214
