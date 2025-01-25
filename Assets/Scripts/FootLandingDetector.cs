@@ -4,23 +4,33 @@ public class FootLandingDetector : MonoBehaviour {
     private const string BUBBLE_TAG = "Bubble";
 
     [SerializeField] private GameObject Player;
-    private PlayerJump playerJump;
 
+    private PlayerJump playerJump;
+    private PlayerAnimation playerAnimation;
     void Start() {
         playerJump = Player.GetComponent<PlayerJump>();
+        playerAnimation = Player.GetComponent<PlayerAnimation>();
     }
-
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnTriggerEnter2D(Collider2D trigger) {
         // シャボン玉に接触
-        if (collision.gameObject.tag == BUBBLE_TAG) {
+        if (trigger.gameObject.tag == BUBBLE_TAG)
+        {
+            Debug.Log("TatchToBubble");
             playerJump.isJumping = false;
+            playerAnimation.SetIsJumpFinished(true);
         }
     }
 
-    void OnCollisionStay2D(Collision2D collision) {
+    void OnTriggerStay2D(Collider2D trigger)
+    {
+        playerAnimation.SetIsResetState(true);
+    }
+
+    void OnTriggerExit2D(Collider2D trigger)
+    {
         // プレイヤーが大ジャンプをした場合、足元のシャボン玉を削除
-        if (playerJump.GetisLongJumping() && collision.gameObject.tag == BUBBLE_TAG) {
-            DestroyBubble(collision.gameObject);
+        if (playerJump.GetisLongJumping() && trigger.gameObject.tag == BUBBLE_TAG) {
+            DestroyBubble(trigger.gameObject);
         }
     }
 

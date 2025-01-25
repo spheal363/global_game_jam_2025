@@ -9,10 +9,12 @@ public class PlayerKeyboardInput : MonoBehaviour {
     [SerializeField] private GameObject Player;
     private PlayerJump playerJump;
     private PlayerMove playerMove;
+    private PlayerAnimation playerAnimation;
 
     void Start() {
         playerJump = Player.GetComponent<PlayerJump>();
         playerMove = Player.GetComponent<PlayerMove>();
+        playerAnimation = Player.GetComponent<PlayerAnimation>();
     }
 
     void Update() {
@@ -38,14 +40,18 @@ public class PlayerKeyboardInput : MonoBehaviour {
         // 左に移動
         if (leftArrowKey.isPressed || aKey.isPressed) {
             playerMove.MoveLeft();
+            playerAnimation.SetIsResetState(false);
         }
         // 右に移動
         else if (rightArrowKey.isPressed || dKey.isPressed) {
             playerMove.MoveRight();
+            playerAnimation.SetIsResetState(false);
         }
         // ジャンプボタンが押された
         else if (spaceKey.wasPressedThisFrame || upArrowKey.wasPressedThisFrame || wKey.wasPressedThisFrame) {
+            playerAnimation.SetIsSpacePressed(true);
             nowJumpTime = 0.0f;
+
         }
         // ジャンプボタンが押され続けている
         else if (!playerJump.isJumping && (spaceKey.isPressed || upArrowKey.isPressed || wKey.isPressed)) {
@@ -54,15 +60,17 @@ public class PlayerKeyboardInput : MonoBehaviour {
         }
         // ジャンプボタンから指が離れた
         else if (!playerJump.isJumping && (spaceKey.wasReleasedThisFrame || upArrowKey.wasReleasedThisFrame || wKey.wasReleasedThisFrame)) {
-            Debug.Log(nowJumpTime);
+            playerAnimation.SetIsJumping(true);
             if (nowJumpTime >= playerJump.getLongJumpTime()) {
                 playerJump.Jump(PlayerJump.JumpKinds.Long);
                 playerJump.isJumping = true;
                 nowJumpTime = 0.0f;
+                Debug.Log("大ジャンプ");
             } else {
                 playerJump.Jump(PlayerJump.JumpKinds.Normal);
                 playerJump.isJumping = true;
                 nowJumpTime = 0.0f;
+                Debug.Log("普通ジャンプ");
             }
         }
     }
