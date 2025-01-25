@@ -18,6 +18,8 @@ public class PlayerAnimation : MonoBehaviour
     }
     public void SetIsSpacePressed(bool isSpacePressed) {
         animator.SetBool(IS_SPACE_PRESSED, isSpacePressed);
+        // 一つ前のフラグをリセット
+        animator.SetBool(IS_RESET_STATE, false);
     }
     public void SetIsJumping(bool isJumping) {
         animator.SetBool(IS_JUMPING, isJumping);
