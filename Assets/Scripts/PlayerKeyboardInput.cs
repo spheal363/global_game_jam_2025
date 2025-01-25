@@ -11,6 +11,9 @@ public class PlayerKeyboardInput : MonoBehaviour {
     private PlayerMove playerMove;
     private PlayerAnimation playerAnimation;
 
+    // ロングタップの経過時間の表示（インスペクタから設定）
+    [SerializeField] LongTapIndicator LongTapIndicator;
+
     void Start() {
         playerJump = Player.GetComponent<PlayerJump>();
         playerMove = Player.GetComponent<PlayerMove>();
@@ -53,11 +56,18 @@ public class PlayerKeyboardInput : MonoBehaviour {
             playerAnimation.SetIsSpacePressed(true);
             nowJumpTime = 0.0f;
 
+            LongTapIndicator.gameObject.SetActive(true);
+            LongTapIndicator.SetFillAmount(0.0f);
+
         }
         // ジャンプボタンが押され続けている
         else if (!playerJump.isJumping && (spaceKey.isPressed || upArrowKey.isPressed || wKey.isPressed)) {
             nowJumpTime += Time.deltaTime;
             Debug.Log("pressed: " + nowJumpTime);
+
+            float timeCirCle = nowJumpTime/ playerJump.getLongJumpTime();
+            // ゲージの表示
+            LongTapIndicator.SetFillAmount(timeCirCle);
         }
         // ジャンプボタンから指が離れた
         else if (!playerJump.isJumping && (spaceKey.wasReleasedThisFrame || upArrowKey.wasReleasedThisFrame || wKey.wasReleasedThisFrame)) {
@@ -73,6 +83,8 @@ public class PlayerKeyboardInput : MonoBehaviour {
                 nowJumpTime = 0.0f;
                 Debug.Log("普通ジャンプ");
             }
+
+            LongTapIndicator.gameObject.SetActive(false);
         }
     }
 }

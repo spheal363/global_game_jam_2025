@@ -1,52 +1,37 @@
+using System.Collections;
 using UnityEngine;
-using DG.Tweening;
 
-public class CameraManager : MonoBehaviour
-{
-    public Transform player; // プレイヤーのTransform
-    private Camera camera;   // カメラの参照
-    public Vector3 mainFixedPosition; // 固定位置（必要に応じて）
-    public float moveDuration = 1.0f; // カメラ移動時間
-    public Ease moveEase = Ease.InOutQuad; // アニメーションのイージング
+public class CameraManager : MonoBehaviour {
+    [SerializeField] Transform player; // プレイヤーのTransform
+    [SerializeField] Transform cameraMovePoint; // カメラ移動ポイントのTransform
+    private bool hasMoved = false; // カメラが移動したかどうかのフラグ
 
-    private bool isMoving = false; // カメラ移動中のフラグ
-
-    private void Start()
-    {
-        camera = GetComponent<Camera>();
-        if (camera == null)
-        {
-            Debug.LogError("Camera component not found on this GameObject!");
+    void Update() {
+        // プレイヤーがCameraMovePointのxを超えた場合
+        if (!hasMoved && player.position.x > cameraMovePoint.position.x) {
+            hasMoved = true; // フラグをtrueに設定
+            StartCoroutine(MoveCameraToPosition(new Vector3(9.2f, transform.position.y, transform.position.z), 0.5f));
         }
     }
 
-    private void Update()
-    {
-        if (player != null && camera != null && !isMoving)
-        {
-            // プレイヤーの位置をビューポート座標に変換
-            Vector3 viewportPos = camera.WorldToViewportPoint(player.position);
+    // カメラを指定した位置に移動させるコルーチン
+    private IEnumerator MoveCameraToPosition(Vector3 targetPosition, float duration) {
+        Vector3 startPosition = transform.position; // 現在のカメラ位置
+        float elapsedTime = 0f;
 
-            // 画面外かどうかを判定
-            if (viewportPos.x < 0 || viewportPos.x > 1 || viewportPos.y < 0 || viewportPos.y > 1)
-            {
-                Debug.Log("Player is out of the screen!");
-                HandlePlayerOutOfScreen();
-            }
+        while (elapsedTime < duration) {
+            // 線形補間を使用して位置を更新
+            transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null; // 次のフレームまで待機
         }
+
+        // 最終的に正確にターゲット位置に設定
+        transform.position = targetPosition;
     }
 
-    private void HandlePlayerOutOfScreen()
+    public bool getHasMoved()
     {
-        // プレイヤーが画面外に出たときの処理
-        Debug.Log("プレイヤーが画面外に出た");
-
-        // フラグを立てる（再び Update で呼ばれないようにする）
-        isMoving = true;
-
-        // 必要に応じて再配置や他の処理を実行
-        camera.transform.DOMove(mainFixedPosition, moveDuration)
-            .SetEase(moveEase)
-            .OnComplete(() => isMoving = false); // アニメーション終了後にフラグをリセット
+        return hasMoved;
     }
 }

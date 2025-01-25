@@ -15,7 +15,7 @@ public class Bug : MonoBehaviour
     private void Update()
     {
         // 左方向に移動
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime);
+        transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
 
         // 一定位置を超えたら削除
         if (transform.position.x < destroyXPosition)
@@ -35,7 +35,7 @@ public class Bug : MonoBehaviour
             {
                 bubble.Pop(); // バブルがはじける処理を呼び出す
             }
-            // Destroy(gameObject); // 虫を削除
+            Destroy(gameObject); // 虫を削除
         }
     }
 }
