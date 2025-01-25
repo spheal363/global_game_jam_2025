@@ -9,6 +9,7 @@ public class BackgroundScroller : MonoBehaviour
     public float distanceModifier = 1;
     private Transform[] backgrounds; // 背景のTransform配列
     private float totalScrollDistance = 0f; // 合計スクロール距離を記録
+    public bool isScrolling = false;
 
     private void Start()
     {
@@ -33,6 +34,7 @@ public class BackgroundScroller : MonoBehaviour
 
     private void Update()
     {
+        if (!isScrolling) return;
         // 背景をスクロール
         for (int i = 0; i < backgrounds.Length; i++)
         {

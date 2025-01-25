@@ -38,7 +38,7 @@ public class BubbleSpawner : MonoBehaviour
             Vector2 spawnPosition = GetRandomPositionWithinBounds();
 
             // バブルを生成
-            Instantiate(bubblePrefab, spawnPosition, Quaternion.identity);
+            Instantiate(bubblePrefab, spawnPosition, bubblePrefab.transform.rotation);
         }
     }
 

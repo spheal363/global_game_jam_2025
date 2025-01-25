@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using DG.Tweening;
 
 public class Bubble : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class Bubble : MonoBehaviour
     public int blinkCount = 5; // 点滅の回数
 
     private Rigidbody2D rb;
-    public SpriteRenderer[] spriteRenderers;
+    private Animator animator;
+    public SpriteRenderer sprite;
     public float minLifeTime;
     public float maxLifeTime;
     public float minAddForceX; // 生成時に加える最小のX方向の力
@@ -20,6 +22,8 @@ public class Bubble : MonoBehaviour
     {
         // Rigidbody2Dの取得
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
         if (rb == null)
         {
             Debug.LogWarning($"{gameObject.name}にRigidbody2Dがアタッチされていません。アタッチしてください。");
@@ -49,21 +53,21 @@ public class Bubble : MonoBehaviour
         // 点滅開始
         for (int i = 0; i < blinkCount; i++)
         {
-            // Spriteの表示・非表示を切り替える
-            foreach(SpriteRenderer sprite in spriteRenderers)
-            {
-                sprite.enabled = !sprite.enabled;
-            }
+            // 透明度を0にフェードアウト
+            sprite.DOFade(0, blinkInterval / 2).SetEase(Ease.InOutQuad);
+            yield return new WaitForSeconds(blinkInterval / 2);
 
-            // 点滅間隔の待機
-            yield return new WaitForSeconds(blinkInterval);
+            // 透明度を1にフェードイン
+            sprite.DOFade(1, blinkInterval / 2).SetEase(Ease.InOutQuad);
+            yield return new WaitForSeconds(blinkInterval / 2);
         }
 
         // 最後にオブジェクトを破棄
-        Destroy(gameObject);
+        Pop();
     }
     public void Pop()
     {
-        Destroy(gameObject);
+        animator.SetTrigger("Pop");
+        Destroy(gameObject, 0.5f);
     }
 }

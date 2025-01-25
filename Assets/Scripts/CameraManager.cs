@@ -1,10 +1,15 @@
 using UnityEngine;
+using DG.Tweening;
 
 public class CameraManager : MonoBehaviour
 {
     public Transform player; // プレイヤーのTransform
     private Camera camera;   // カメラの参照
-    public Vector2 mainFixedPosition; // 固定位置（必要に応じて）
+    public Vector3 mainFixedPosition; // 固定位置（必要に応じて）
+    public float moveDuration = 1.0f; // カメラ移動時間
+    public Ease moveEase = Ease.InOutQuad; // アニメーションのイージング
+
+    private bool isMoving = false; // カメラ移動中のフラグ
 
     private void Start()
     {
@@ -17,7 +22,7 @@ public class CameraManager : MonoBehaviour
 
     private void Update()
     {
-        if (player != null && camera != null)
+        if (player != null && camera != null && !isMoving)
         {
             // プレイヤーの位置をビューポート座標に変換
             Vector3 viewportPos = camera.WorldToViewportPoint(player.position);
@@ -34,10 +39,14 @@ public class CameraManager : MonoBehaviour
     private void HandlePlayerOutOfScreen()
     {
         // プレイヤーが画面外に出たときの処理
-        Debug.Log("Handling player out of screen event.");
+        Debug.Log("プレイヤーが画面外に出た");
+
+        // フラグを立てる（再び Update で呼ばれないようにする）
+        isMoving = true;
 
         // 必要に応じて再配置や他の処理を実行
-        // 例: プレイヤーを画面内の固定位置に戻す
-        player.position = new Vector3(mainFixedPosition.x, mainFixedPosition.y, player.position.z);
+        camera.transform.DOMove(mainFixedPosition, moveDuration)
+            .SetEase(moveEase)
+            .OnComplete(() => isMoving = false); // アニメーション終了後にフラグをリセット
     }
 }
