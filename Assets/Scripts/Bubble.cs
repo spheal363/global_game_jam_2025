@@ -62,4 +62,8 @@ public class Bubble : MonoBehaviour
         // 最後にオブジェクトを破棄
         Destroy(gameObject);
     }
+    public void Pop()
+    {
+        Destroy(gameObject);
+    }
 }
