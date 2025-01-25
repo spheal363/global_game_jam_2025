@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class FootLandingDetector : MonoBehaviour {
     private const string BUBBLE_TAG = "Bubble";
+    private const string GOUND_TAG = "Ground";
 
     [SerializeField] private GameObject Player;
 
@@ -13,9 +14,9 @@ public class FootLandingDetector : MonoBehaviour {
     }
     void OnTriggerEnter2D(Collider2D trigger) {
         // シャボン玉に接触
-        if (trigger.gameObject.tag == BUBBLE_TAG)
+        if (trigger.gameObject.tag == BUBBLE_TAG || trigger.gameObject.tag == GOUND_TAG)
         {
-            Debug.Log("TatchToBubble");
+            Debug.Log("着地");
             playerJump.isJumping = false;
             playerAnimation.SetIsJumpFinished(true);
         }
@@ -28,6 +29,7 @@ public class FootLandingDetector : MonoBehaviour {
 
     void OnTriggerExit2D(Collider2D trigger)
     {
+        playerAnimation.SetIsResetState(false);
         // プレイヤーが大ジャンプをした場合、足元のシャボン玉を削除
         if (playerJump.GetisLongJumping() && trigger.gameObject.tag == BUBBLE_TAG) {
             DestroyBubble(trigger.gameObject);
