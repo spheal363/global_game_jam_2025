@@ -1,19 +1,24 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartController:MonoBehaviour
 {
-    private void Start()
+    // ボタンをインスペクタから設定するための変数
+    public Button startButton;
+
+    void Start()
     {
-        
+        // ボタンがクリックされたときにStartGameメソッドを呼び出す
+        startButton.onClick.AddListener(StartGameMethod);
     }
-    private void Update()
+
+    // ゲームを開始するメソッド
+    void StartGameMethod()
     {
-        if(Input.GetMouseButtonDown(0))
-        {
-            SceneManager.LoadScene("MainScene");
-        }
+        // ゲーム画面のシーン名を指定してシーンをロード
+        SceneManager.LoadScene("MainScene"); 
     }
 }
 
