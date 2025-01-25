@@ -47,8 +47,9 @@ public class PlayerKeyboardInput : MonoBehaviour {
             playerMove.MoveRight();
             playerAnimation.SetIsResetState(false);
         }
+
         // ジャンプボタンが押された
-        else if (spaceKey.wasPressedThisFrame || upArrowKey.wasPressedThisFrame || wKey.wasPressedThisFrame) {
+        if (spaceKey.wasPressedThisFrame || upArrowKey.wasPressedThisFrame || wKey.wasPressedThisFrame) {
             playerAnimation.SetIsSpacePressed(true);
             nowJumpTime = 0.0f;
 
