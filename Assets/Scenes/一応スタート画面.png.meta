@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7b8440f4947c9004fbbcd0af1aaaf903
+guid: 35ad95bf6ad09f541af1f40ba98f51d6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -36348282323354404
-    second: jump06_0
+      213: -2964434891928517715
+    second: "\u4E00\u5FDC\u30B9\u30BF\u30FC\u30C8\u753B\u9762_0"
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -75,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -85,6 +85,32 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -113,23 +139,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerJump4
+      name: "\u4E00\u5FDC\u30B9\u30BF\u30FC\u30C8\u753B\u9762_0"
       rect:
         serializedVersion: 2
-        x: 104
+        x: 0
         y: 0
-        width: 224
-        height: 402
+        width: 1238
+        height: 875
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cdcbbe70e6dde7ff0800000000000000
-      internalID: -36348282323354404
+      spriteID: da3c3da0c263cd6d0800000000000000
+      internalID: -2964434891928517715
       vertices: []
       indices: 
       edges: []
@@ -138,7 +164,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 24cea4466f9f1b742936e6cff07a2da8
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      PlayerJump4: -36348282323354404
+      "\u4E00\u5FDC\u30B9\u30BF\u30FC\u30C8\u753B\u9762_0": -2964434891928517715
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
