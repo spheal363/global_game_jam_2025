@@ -18,7 +18,7 @@ public class StartController:MonoBehaviour
     void StartGameMethod()
     {
         // ゲーム画面のシーン名を指定してシーンをロード
-        SceneManager.LoadScene("MainScene"); 
+        SceneManager.LoadScene("spheal_363_TestScene"); 
     }
 }
 
