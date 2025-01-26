@@ -3,22 +3,30 @@ using UnityEngine;
 public class FootLandingDetector : MonoBehaviour {
     private const string BUBBLE_TAG = "Bubble";
     private const string GOUND_TAG = "Ground";
+    private const string GAMEOVER_TAG = "GameOver";
 
     [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject GameOverCanvas;
 
     private PlayerJump playerJump;
     private PlayerAnimation playerAnimation;
     void Start() {
         playerJump = Player.GetComponent<PlayerJump>();
         playerAnimation = Player.GetComponent<PlayerAnimation>();
+        GameOverCanvas.SetActive(false);
     }
     void OnTriggerEnter2D(Collider2D trigger) {
-        // ƒVƒƒƒ{ƒ“‹Ê‚ÉÚG
+        // ï¿½Vï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½Ê‚ÉÚG
         if (trigger.gameObject.tag == BUBBLE_TAG || trigger.gameObject.tag == GOUND_TAG)
         {
-            Debug.Log("’…’n");
+            Debug.Log("ï¿½ï¿½ï¿½n");
             playerJump.isJumping = false;
             playerAnimation.SetIsJumpFinished(true);
+        }
+        if (trigger.CompareTag(GAMEOVER_TAG))
+        {
+            Debug.Log("ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ï¼");
+            GameOverCanvas.SetActive(true);
         }
     }
 
@@ -30,13 +38,13 @@ public class FootLandingDetector : MonoBehaviour {
     void OnTriggerExit2D(Collider2D trigger)
     {
         playerAnimation.SetIsResetState(false);
-        // ƒvƒŒƒCƒ„[‚ª‘åƒWƒƒƒ“ƒv‚ğ‚µ‚½ê‡A‘«Œ³‚ÌƒVƒƒƒ{ƒ“‹Ê‚ğíœ
+        // ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½Wï¿½ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ÌƒVï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½Ê‚ï¿½ï¿½íœ
         if (playerJump.GetisLongJumping() && trigger.gameObject.tag == BUBBLE_TAG) {
             DestroyBubble(trigger.gameObject);
         }
     }
 
-    // ƒVƒƒƒ{ƒ“‹Ê‚ÌƒQ[ƒ€ƒIƒuƒWƒFƒNƒg‚ğ‰ó‚·
+    // ï¿½Vï¿½ï¿½ï¿½{ï¿½ï¿½ï¿½Ê‚ÌƒQï¿½[ï¿½ï¿½ï¿½Iï¿½uï¿½Wï¿½Fï¿½Nï¿½gï¿½ï¿½ï¿½ï¿½
     public void DestroyBubble(GameObject bubble) {
         Destroy(bubble);
     }
