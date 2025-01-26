@@ -8,18 +8,18 @@ public class TextChange : MonoBehaviour
 
     void Start() {
         textMeshPro = GetComponent<TextMeshProUGUI>();
-        textMeshPro.text = "ƒS[ƒ‹‚Ü‚Å‚ ‚Æ"+ goalLen + "m";
+        textMeshPro.text = "ã‚´ãƒ¼ãƒ«ã¾ã§ã‚ã¨ " + goalLen.ToString("F1") + "m";
     }
 
     void Update() {
-        // CameraManagerƒXƒNƒŠƒvƒg‚ğ‚ÂƒIƒuƒWƒFƒNƒg‚ğæ“¾
+        // CameraManagerã‚¹ã‚¯ãƒªãƒ—ãƒˆã‹ã‚‰ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å–å¾—
         CameraManager cameraManager = GameObject.Find("Main Camera").GetComponent<CameraManager>();
-        // ƒJƒƒ‰‚ªˆÚ“®‚µ‚½‚©‚Ç‚¤‚©‚ğæ“¾
+        // ã‚«ãƒ¡ãƒ©ãŒç§»å‹•ã—ãŸã‹ã©ã†ã‹ã‚’å–å¾—
         bool hasMoved = cameraManager.getHasMoved();
-        // ƒJƒƒ‰‚ªˆÚ“®‚µ‚½ê‡
+        // ã‚«ãƒ¡ãƒ©ãŒç§»å‹•ã—ãŸå ´åˆ
         if (hasMoved) {
-            goalLen-= Time.deltaTime;
-            textMeshPro.text = "ƒS[ƒ‹‚Ü‚Å‚ ‚Æ" + goalLen + "m";
+            goalLen -= Time.deltaTime;
+            textMeshPro.text = "ã‚´ãƒ¼ãƒ«ã¾ã§ã‚ã¨ " + goalLen.ToString("F1") + "m";
         }
     }
 }

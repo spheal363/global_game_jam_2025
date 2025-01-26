@@ -29,13 +29,12 @@ public class Bug : MonoBehaviour
         // バブルに当たったら処理を実行
         if (other.CompareTag("Bubble"))
         {
-            Debug.Log("シャボン玉にあたりました");
             Bubble bubble = other.GetComponent<Bubble>();
             if (bubble != null)
             {
                 bubble.Pop(); // バブルがはじける処理を呼び出す
             }
-            Destroy(gameObject); // 虫を削除
+            // Destroy(gameObject); // 虫を削除
         }
     }
 }
