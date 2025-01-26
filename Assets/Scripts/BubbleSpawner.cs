@@ -19,7 +19,6 @@ public class BubbleSpawner : MonoBehaviour
         }
 
         // バブルを生成
-        SpawnBubbles();
         InvokeRepeating(nameof(SpawnBubbles), initSpawnDelay, spawnIntervalTime);
     }
     private void Update() 
