@@ -1279,7 +1279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02ae511fbc1e35b40a4ce218f3ad2b26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOver: {fileID: 0}
+  gameOver: {fileID: 2128201975}
   goalLen: 20
   goalTriggerValue: 3
   backgroundScroller: {fileID: 564624434}
@@ -2334,7 +2334,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -3134237347898075724, guid: 4e98a44ba7b34214aa7f039bd1e9c9c9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4e98a44ba7b34214aa7f039bd1e9c9c9, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2421,7 +2421,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7131763119708054616, guid: 5b80ea2e7da9b284c85d9a4fb4041999, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b80ea2e7da9b284c85d9a4fb4041999, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

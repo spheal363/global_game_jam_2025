@@ -63,7 +63,6 @@ public class PlayerKeyboardInput : MonoBehaviour {
         // ジャンプボタンが押され続けている
         else if (!playerJump.isJumping && (spaceKey.isPressed || upArrowKey.isPressed || wKey.isPressed)) {
             nowJumpTime += Time.deltaTime;
-            Debug.Log("pressed: " + nowJumpTime);
 
             float timeCirCle = nowJumpTime/ playerJump.getLongJumpTime();
             // ゲージの表示
