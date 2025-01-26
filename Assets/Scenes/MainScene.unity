@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3982644041849747545, guid: f5591db8d8b80ff4ab7b2252a8008657, type: 3}
+      propertyPath: minLifeTime
+      value: 25.7
+      objectReference: {fileID: 0}
     - target: {fileID: 4102085143977204015, guid: f5591db8d8b80ff4ab7b2252a8008657, type: 3}
       propertyPath: m_Name
       value: Bubble
@@ -209,9 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1028289246}
-  mainFixedPosition: {x: 0, y: 0, z: -10}
-  moveDuration: 1
-  moveEase: 10
+  cameraMovePoint: {fileID: 0}
 --- !u!114 &150951691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -583,10 +585,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollSpeed: 2
-  backgroundWidth: 17.8
-  distanceText: {fileID: 207148469}
-  distanceModifier: 0.1
-  isScrolling: 0
+  stopPosition: -19.2
+  restartPosition: 38.4
+  backgrounds: []
+  cameraManager: {fileID: 0}
 --- !u!4 &564624433
 Transform:
   m_ObjectHideFlags: 0
@@ -1660,6 +1662,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1028289240}
+  LongTapIndicator: {fileID: 0}
 --- !u!4 &1939359856
 Transform:
   m_ObjectHideFlags: 0
