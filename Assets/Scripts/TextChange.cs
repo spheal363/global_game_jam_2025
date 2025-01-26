@@ -1,13 +1,14 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TextChange : MonoBehaviour
 {
-    private TextMeshProUGUI textMeshPro;
+    private Text textMeshPro;
     [SerializeField] private float goalLen = 500.0f;
 
     void Start() {
-        textMeshPro = GetComponent<TextMeshProUGUI>();
+        textMeshPro = GetComponent<Text>();
         textMeshPro.text = "ゴールまであと " + goalLen.ToString("F1") + "m";
     }
 
