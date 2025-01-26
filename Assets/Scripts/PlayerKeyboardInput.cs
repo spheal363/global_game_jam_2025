@@ -43,12 +43,18 @@ public class PlayerKeyboardInput : MonoBehaviour {
         // 左に移動
         if (leftArrowKey.isPressed || aKey.isPressed) {
             playerMove.MoveLeft();
+            playerAnimation.SetIsMoveTrue();
             playerAnimation.SetIsResetState(false);
         }
         // 右に移動
         else if (rightArrowKey.isPressed || dKey.isPressed) {
             playerMove.MoveRight();
+            playerAnimation.SetIsMoveTrue();
             playerAnimation.SetIsResetState(false);
+        }
+        else
+        {
+            playerAnimation.SetIsMoveFalse();
         }
 
         // ジャンプボタンが押された
@@ -86,5 +92,8 @@ public class PlayerKeyboardInput : MonoBehaviour {
 
             LongTapIndicator.gameObject.SetActive(false);
         }
+        var horizontalInput = Input.GetAxisRaw("Horizontal");
+        Debug.Log("horizontalInput: " + horizontalInput);
+        playerAnimation.horizontalInput = horizontalInput;
     }
 }

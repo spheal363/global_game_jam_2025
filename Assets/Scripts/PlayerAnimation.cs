@@ -12,6 +12,8 @@ public class PlayerAnimation : MonoBehaviour
     private const string IS_JUMP_FINISHED = "isJumpFinished";
     // 棒立ちに戻る
     private const string IS_RESET_STATE = "isResetState";
+    private const string IS_MOVE_STATE = "isMoveState";
+    public float horizontalInput;
 
     private void Start() {
         animator = this.GetComponent<Animator>();
@@ -36,5 +38,15 @@ public class PlayerAnimation : MonoBehaviour
         animator.SetBool(IS_RESET_STATE, isResetState);
         // 一つ前のフラグをリセット
         animator.SetBool(IS_JUMP_FINISHED, false);
+    }
+
+    public void SetIsMoveTrue()
+    {
+        animator.SetBool(IS_MOVE_STATE, true);
+    }
+
+    public void SetIsMoveFalse()
+    {
+        animator.SetBool(IS_MOVE_STATE, false);
     }
 }
