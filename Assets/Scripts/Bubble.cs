@@ -78,7 +78,6 @@ public class Bubble : MonoBehaviour
     private void SelfRotation()
     {
         // 自身をY軸を中心に回転させる
-        Debug.Log("回転");
         transform.Rotate(0, 0, rotationForce * Time.deltaTime);
     }
     public void Pop()
