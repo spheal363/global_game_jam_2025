@@ -10,13 +10,13 @@ public class TextChange : MonoBehaviour
     [SerializeField] private GameOver gameOver;
     [SerializeField] private float goalLen = 500.0f;
     [SerializeField] private float goalTriggerValue = 10f;
-    [SerializeField] private BackgroundScroller backgroundScroller; 
+    [SerializeField] private BackgroundScroller backgroundScroller;
     [SerializeField] private GameObject kobitoHouse;
     [SerializeField] private Vector3 houseTargetTrans;
     [SerializeField] private float moveDuration;
-    void Start() { 
+    void Start() {
         textMeshPro = GetComponent<Text>();
-        textMeshPro.text = "ゴールまであと " + goalLen.ToString("F1") + "m";
+        textMeshPro.text = "ゴールまであと" + goalLen.ToString("F1") + "m";
     }
 
     void Update() {
@@ -28,7 +28,7 @@ public class TextChange : MonoBehaviour
         // カメラが移動した場合
         if (hasMoved) {
             goalLen -= Time.deltaTime;
-            textMeshPro.text = "ゴールまであと " + goalLen.ToString("F1") + "m";
+            textMeshPro.text = "ゴールまであと" + goalLen.ToString("F1") + "m";
         }
 
         if (goalLen <= goalTriggerValue)
