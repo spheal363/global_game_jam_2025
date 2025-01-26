@@ -12,12 +12,17 @@ public class BackgroundScroller : MonoBehaviour {
     [Header("背景画像のリスト")] public List<GameObject> backgrounds;
 
     [SerializeField] private CameraManager cameraManager;
+    public bool isShowGoal;
 
     void Update() {
         // カメラが移動したかどうかのフラグがtrueの場合
-        if (cameraManager.getHasMoved()) {
+        if (cameraManager.getHasMoved() && !isShowGoal) {
             // 強制スクロールを実行
             ForceScroll();
+        }
+        else
+        {
+            StopScroll();
         }
     }
 
@@ -34,5 +39,9 @@ public class BackgroundScroller : MonoBehaviour {
                     background.transform.position.z);
             }
         }
+    }
+    private void StopScroll()
+    {
+        //スクロールを止める
     }
 }

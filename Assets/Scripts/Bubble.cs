@@ -16,6 +16,7 @@ public class Bubble : MonoBehaviour
     public float maxAddForceX; // 生成時に加える最大のX方向の力
     public float minGravity;
     public float maxGravity;
+    public float rotationForce = 10;
 
 
     private void Start()
@@ -32,6 +33,15 @@ public class Bubble : MonoBehaviour
         AddInitialForce();
         Initialize();
         StartCoroutine(DisappearAfterTime());
+
+        int random = Random.Range(0, 2);
+        if (random == 0)
+        {
+            rotationForce -= rotationForce * 2;
+        }
+    }
+    private void Update() {
+        SelfRotation();
     }
     private void Initialize()
     {
@@ -64,6 +74,12 @@ public class Bubble : MonoBehaviour
 
         // 最後にオブジェクトを破棄
         Pop();
+    }
+    private void SelfRotation()
+    {
+        // 自身をY軸を中心に回転させる
+        Debug.Log("回転");
+        transform.Rotate(0, 0, rotationForce * Time.deltaTime);
     }
     public void Pop()
     {

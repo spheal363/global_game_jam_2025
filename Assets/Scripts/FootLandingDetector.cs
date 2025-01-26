@@ -7,6 +7,7 @@ public class FootLandingDetector : MonoBehaviour {
 
     [SerializeField] private GameObject Player;
     [SerializeField] private GameObject GameOverCanvas;
+    public GameOver gameOver;
 
     private PlayerJump playerJump;
     private PlayerAnimation playerAnimation;
@@ -26,7 +27,7 @@ public class FootLandingDetector : MonoBehaviour {
         if (trigger.CompareTag(GAMEOVER_TAG))
         {
             Debug.Log("ゲームオーバー！");
-            GameOverCanvas.SetActive(true);
+            gameOver.OnGameOver();
         }
     }
 
